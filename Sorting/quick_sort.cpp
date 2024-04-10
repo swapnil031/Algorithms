@@ -1,17 +1,16 @@
-
 #include<iostream>
 using namespace std;
 int partition(int a[],int lb,int ub){
     int pivot=a[ub];
-    int partition_index=lb;
+    int partition_index=lb-1;
     for(int i=lb;i<ub;i++){
         if(a[i]<=pivot){
-            swap(a[i],a[partition_index]);
             partition_index++;
+            swap(a[i],a[partition_index]);
         }
     }
-    swap(a[partition_index],a[ub]);
-    return partition_index;
+    swap(a[partition_index+1],a[ub]);
+    return partition_index+1;
 }
 void quicksort(int a[],int lb,int ub){
     if(lb>=ub)
