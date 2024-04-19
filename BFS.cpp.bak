@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+#define MAX 50
+int front=-1;
+int rear=-1;
+int adjacencyM[MAX][MAX];
+int Queue[MAX];
+int n;
+
+void enqueue(int a){
+	if(rear==n-1 || front>rear){
+		return;
+	}
+	if(front==-1){
+		front++;
+	}
+	Queue[++rear]=a;
+}
+
+int dequeue(){
+	int item=Queue[front];
+	front++;
+	return item;
+}
+
+int main()
+{
+	FILE *fp=fopen("ip.txt","r");
+	fscanf(fp,"%d",&n);
+	printf("%d \n",n);
+	for(int i=0;i<n;i++){
+		for(int j=0;j<n;j++){
+			fscanf(fp,"%d",&adjacencyM[i][j]);
+		}
+	}
+	for(int i=0;i<n;i++){
+		for(int j=0;j<n;j++){
+			printf("%d ",adjacencyM[i][j]);
+		}
+		printf("\n");
+	}
+}
