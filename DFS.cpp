@@ -23,11 +23,11 @@ void dfs(int n,int start_node){
 	visited[start_node]=1;
 	while(top>=0){
 		current_node=pop();
-        visited[current_node]=1;
 		printf("%d -> ",current_node);
 		for(int i=0;i<n;i++){
 			if(adjacencyM[current_node][i] && !visited[i]){
 				push(i);
+				visited[current_node]=1;
 			}
 		}
 	}
