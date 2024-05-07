@@ -41,7 +41,7 @@ int main(){
 	int n,capacity;
 	cout<<"enter the no of objects ";
 	cin>>n;
-	cout<<"enter the size of the knapsack ";
+	cout<<"enter the capacity of the knapsack ";
 	cin>>capacity;
 	for(int i=0;i<n;i++){
 		cout<<"enter the profits of object "<<i+1<<" ";
