@@ -1,0 +1,69 @@
+#include<stdio.h>
+#include<limits.h>
+#define MAX 10
+
+int findminindex(int n,int key[],int visited[]){
+	int minkey=INT_MAX,minindex;
+	for(int v=0;v<n;v++){
+		if(visited[v]==0 && key[v]<minkey){
+			minkey=key[v];
+			minindex=v;
+		}
+	}
+	return minindex;
+}
+
+void printmst(int n,int parent[],int G[MAX][MAX]){
+	printf("Edge -- Weight \t\n");
+	for(int i=1;i<n;i++){
+		printf("%d  %d ->%d \n",parent[i],i,G[i][parent[i]]);
+	}
+}
+
+void prim(int n,int G[MAX][MAX]){
+	int parent[MAX];
+	int key[MAX];
+	int visited[MAX];
+	for(int i=0;i<n;i++){
+		key[i]=INT_MAX;
+		visited[i]=0;
+	}
+	key[0]=0;
+	parent[0]=-1;
+	for(int count=0;count<n-1;count++){
+		int u=findminindex(n,key,visited);
+
+		visited[u]=1;
+		for(int v=0;v<n;v++){
+			if(G[u][v] && visited[v]==0 && G[u][v]<key[v]){
+				parent[v]=u;
+				key[v]=G[u][v];
+			}
+		}
+	}
+	printmst(n,parent,G);
+}
+void print(int n,int G[][MAX]){
+	printf("the adjacency matrix is :\n");
+	for(int i=0;i<n;i++){
+		for(int j=0;j<n;j++){
+			printf("%d   ",G[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+int main()
+{
+	int n;
+	int G[MAX][MAX];
+	FILE *fp=fopen("prim.txt","r");
+	fscanf(fp,"%d",&n);
+	for(int i=0;i<n;i++){
+		for(int j=0;j<n;j++){
+			fscanf(fp,"%d",&G[i][j]);
+		}
+	}
+	print(n,G);
+	prim(n,G);
+}
