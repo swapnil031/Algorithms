@@ -40,11 +40,11 @@ int is_safe(int k,int i)
 }
 void nqueen(int k,int n)
 {
-    for(int i=1;i<=n;i++)
+    for(int col=1;col<=n;col++)
     {
-        if(is_safe(k,i))
+        if(is_safe(k,col))
         {
-            x[k]=i;
+            x[k]=col;
             if(k==n)
             {
                 print();
